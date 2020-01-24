@@ -23,6 +23,6 @@ def village_scraper(x):
             link = lst[i].find(attrs={"class":"product-item-link"})['href']
             result.append(["Name: {}, Price: {}, Link: {}".format(name, price, link)])
     get_details()
-    return result[0:3]
+    return result[0:2]
 
 #print(village_scraper("dell laptop"))

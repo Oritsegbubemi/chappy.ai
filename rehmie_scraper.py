@@ -23,6 +23,6 @@ def rehmie_scraper(x):
             link = "https://rehmie.com" + lst[i].find(attrs={"class":"productContent pt-3"}).find(href=True).get("href")
             result.append(["Name: {}, Price: {}, Link: {}".format(name, price, link)])
     get_details()
-    return result[0:3]
+    return result[0:2]
 
 #print(rehmie_scraper("hp laptop"))

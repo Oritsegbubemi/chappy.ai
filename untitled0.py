@@ -1,7 +1,6 @@
 import requests
 import time
-from chappy_tele import classifier, response, user_type, search_product, wiki
-last_saved_message = ''
+from chappy_tele import classifier, response, user_specify, search_product, wiki
 
 class BotHandler:
     def __init__(self, token):
@@ -28,19 +27,7 @@ class BotHandler:
         else:
              last_update = get_result[len(get_result)]
         return last_update
-    """
-    def get_new_message(self):
-        global last_saved_message
-        current_last_message = self.get_last_update()['update_id']['message']['text']
-
-        # Check for new message
-        if current_last_message == last_saved_message:
-            time.sleep(10)  # no new message wait for new message
-            self.get_new_message()
-        else:
-            last_saved_message = current_last_message
-            return current_last_message
-"""
+                
 token = '943273135:AAHXI6GPMSKatsSJz3e3xOpEcqHmlnFVBns'
 chappy_ai = BotHandler(token)
 
@@ -52,7 +39,6 @@ enter_brand = ""
 enter_type = ""
 
 def main():
-    print("Start")
     new_offset = None
     while True:
         chappy_ai.get_updates(new_offset)
@@ -63,6 +49,7 @@ def main():
             last_chat_id = last_update['message']['chat']['id']
             last_chat_name = last_update['message']['chat']['first_name']
             lower_case_text = last_chat_text.lower()
+            user_i = chappy_ai.get_updates['result']['update_id']['message']['text']
             
             #Begining of conversation with bot
             if lower_case_text == "/start":
@@ -73,20 +60,26 @@ def main():
             #Main conversation with bot
             else:
                 result = classifier(lower_case_text)
-                
                 if result == "product_inquiry": #Only repsonds to product inquiry
-                    bot_msg = user_type() #Call the user_specify function
-                    chappy_ai.send_message(last_chat_id, bot_msg)
-                    #lower_case_text = chappy_ai.get_new_message()
-                    print(lower_case_text)
-                    bot_msg = search_product(lower_case_text) #Call search_product function
+                    bot_msg = user_specify() #Call the user_specify function
+                    chappy_ai.send_message(last_chat_id, bot_msg) #Send the function
+                    #var userinput = WaitNewMessage()
+                    #time.sleep(10)
+                    print(user_i)
+                    bot_msg = search_product(user_i) #Call search_product function
                     chappy_ai.send_message(last_chat_id, bot_msg)
                     
-                    
+                    """
+                    if (lower_case_text.lower() not in laptop_brand):
+                        bot_msg="Sorry, {} laptop is not available".format(lower_case_text)
+                        chappy_ai.send_message(last_chat_id, bot_msg)
+                        if (lower_case_text.lower() not in laptop_brand): #I want the user to enter again  
+                            bot_msg="Sorry, {} laptop is not available".format(lower_case_text)
+                            chappy_ai.send_message(last_chat_id, bot_msg)
+                    """        
                 elif result == "user_input":
-                    bot_msg = 'Do not know what that mean. I am checking Wikipedia..'
-                    chappy_ai.send_message(last_chat_id, bot_msg)
                     bot_msg = wiki(lower_case_text)
+                    #print(lower_case_text)
                     chappy_ai.send_message(last_chat_id, bot_msg)
                 
                 else:

@@ -23,6 +23,6 @@ def techno_scraper(x):
             link = lst[i].find(attrs={"class":"heading-title product-name"}).find(href=True).get("href")
             result.append(["Name: {}, Price: {}, Link: {}".format(name, price, link)])
     get_details()
-    return result[0:3]
+    return result[0:2]
 
 #print(techno_scraper("asus laptop"))

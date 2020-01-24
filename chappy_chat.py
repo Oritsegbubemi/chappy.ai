@@ -9,8 +9,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 #from eshop_scraper import eshop_scraper
 #from genuss_scraper import genuss_scraper
 from jumia_scraper import jumia_scraper
-#from justfone_scraper import justfone_scraper
-#from kara_scraper import kara_scraper
+from justfone_scraper import justfone_scraper
+from kara_scraper import kara_scraper
 #from pcplanet_scraper import pcplanet_scraper
 #from rehmie_scraper import rehmie_scraper
 #from showict_scraper import showict_scraper
@@ -127,9 +127,10 @@ alt_spellings = ["laptop"]
 spellings_dict = {"laptop":available_products[0]}
 brand = ["apple", "hp", "acer", "asus", "lenovo", "microsoft", "dell", "toshiba","fujitsu", "huawei"]
 
-def jumia_laptop(a):
-    if a in brand:
-        x="laptops/{0}".format(a)
+#jumia
+def jumia_laptop(x):
+    if x in brand:
+        x="laptops/{0}".format(x)
         lst=jumia_scraper(x)
         if len(lst) != 0:
             for i in lst:
@@ -139,6 +140,32 @@ def jumia_laptop(a):
     else:
         return "Sorry, We don't have such laptop in our database\nPlease check your spelling"
 
+#justfone_scraper
+def justfone_laptop(x):
+    if x in brand:
+        x="laptops/{0}".format(x)
+        lst=justfone_scraper(x)
+        if len(lst) != 0:
+            for i in lst:
+                return i
+        else:
+            return "Wasn't able to get that at the moment...\nMaybe not currently available." 
+    else:
+        return "Sorry, We don't have such laptop in our database\nPlease check your spelling"
+
+#kara_scraper
+def kara_laptop(x):
+    if x in brand:
+        x="laptops/{0}".format(x)
+        lst=kara_scraper(x)
+        if len(lst) != 0:
+            for i in lst:
+                return i
+        else:
+            return "Wasn't able to get that at the moment...\nMaybe not currently available." 
+    else:
+        return "Sorry, We don't have such laptop in our database\nPlease check your spelling"
+    
 
 #SPECIFY TYPE OF LAPTOP
 def available():
@@ -166,12 +193,19 @@ def specify():
         co.close()
         con.close()
     create_table()
+    
     data_entry(laptop_brand,laptop_type,laptop_price)
-    print("Okay... Request loading...")
-    print("Checking Jumia")
-   
-    j_laptop=jumia_scraper(laptop_brand+"/"+laptop_type)
-    print(j_laptop)
+    print("Okay... Request loading...")  
+
+    #Jumia
+    jumia_laptop = jumia_scraper(laptop_brand+"/"+laptop_type)
+    print("\nJumia Laptop\n", jumia_laptop)
+    #Justfone
+    justfone_laptop = justfone_scraper(laptop_brand+"/"+laptop_type)
+    print("\nJustfone Laptop\n", justfone_laptop)
+    #Kara
+    #kara_laptop =  kara_scraper(laptop_brand+"/"+laptop_type)
+    #print("\nKara Laptop\nHi", kara_laptop)
     
 ###############################################################################7
 #OPENING TAG

@@ -23,6 +23,6 @@ def showict_scraper(x):
             link = lst[i].find(attrs={"class":"mf-product-content"}).find(href=True).get("href")
             result.append(["Name: {}, Price: {}, Link: {}".format(name, price, link)])
     get_details()
-    return result[0:3]
+    return result[0:2]
 
 #print(showict_scraper("hp laptop"))

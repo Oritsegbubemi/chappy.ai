@@ -113,6 +113,7 @@ def classifier(message):
 ###############################################################################6
 #PRODUCT INQUIRY
 laptop_brand = ["apple", "hp", "acer", "asus", "lenovo", "microsoft", "dell", "toshiba","fujitsu", "huawei"]
+#jumia
 def jumia_laptop(a):
     if a in laptop_brand:
         x = "laptops/{0}".format(a)
@@ -141,8 +142,9 @@ def user_price():
     return text
     
 def search_product(a):
-    j_laptop = jumia_scraper(a)
-    return j_laptop
+    j1_laptop = jumia_scraper(a)
+#    j2_laptop = justfone_laptop(a)
+    return j1_laptop
     
 ###############################################################################8
 ##CHATBOT FLOW
@@ -175,15 +177,18 @@ def questions(message):
                 return real[1]
 
 def wiki(message):
-   try:
-       wiki = wk.summary(message, sentences = 2)
-       return wiki
+   try: 
+       if message in laptop_brand:
+           pass
+       else: 
+           wiki = wk.summary(message, sentences = 2)
+           return wiki
    except:
        return "No content has been found"
         
 ###############################################################################10
 #LOOP THE CHATBOT
-"""       
+"""
 flag=True
 while flag:
     sentence=input("User: ")
