@@ -28,4 +28,4 @@ def jumia_scraper(x):
     get_details()
     return result[0:3]
 
-#print(jumia_scraper("dell laptop corei3"))
+print(jumia_scraper("dell laptop corei3"))

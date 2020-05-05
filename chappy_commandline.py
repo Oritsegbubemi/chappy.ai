@@ -1,6 +1,6 @@
 ###############################################################################1
 #IMPORT ALL NEEDED LIBRARIES AND MODULES
-import nltk, re, random, sqlite3
+import nltk, re, random
 import wikipedia as wk
 from sklearn.svm import SVC
 from nltk.stem import PorterStemmer
@@ -206,7 +206,7 @@ def specify():
     #Kara
     #kara_laptop =  kara_scraper(laptop_brand+"/"+laptop_type)
     #print("\nKara Laptop\nHi", kara_laptop)
-    
+
 ###############################################################################7
 #OPENING TAG
 display=""

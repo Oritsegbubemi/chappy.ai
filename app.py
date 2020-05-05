@@ -1,6 +1,8 @@
+#Trying to get the last message
+
 import requests
 import time
-from chappy_tele import classifier, response, user_type, search_product, wiki
+from chappy_telegram import classifier, response, user_type, search_product, wiki
 last_saved_message = ''
 
 class BotHandler:
@@ -41,6 +43,7 @@ class BotHandler:
             last_saved_message = current_last_message
             return current_last_message
 """
+
 token = '943273135:AAHXI6GPMSKatsSJz3e3xOpEcqHmlnFVBns'
 chappy_ai = BotHandler(token)
 
