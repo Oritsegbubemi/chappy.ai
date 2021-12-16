@@ -1,6 +1,6 @@
 ###############################################################################1
 #IMPORT ALL NEEDED LIBRARIES AND MODULES
-import nltk, re, random
+import nltk, re, random, sqlite3
 import wikipedia as wk
 from sklearn.svm import SVC
 from nltk.stem import PorterStemmer
