@@ -8,4 +8,4 @@ bs4
 lxml
 pymessenger
 datefinder
-gunicorn==19.7.1
+gunicorn==22.0.0
