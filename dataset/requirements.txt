@@ -1,11 +1,11 @@
 requests==2.20.0
 numpy==1.22.0
 scipy==0.19.1
-scikit_learn==0.18.2
+scikit_learn==1.5.0
 nltk
 flask
 bs4
 lxml
 pymessenger
 datefinder
-gunicorn==19.7.1
+gunicorn==22.0.0
